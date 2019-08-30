@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_git/common/model.dart';
 import 'package:flutter_git/views/pages/index.dart';
 import 'package:flutter_git/views/widgets/app_drawer.dart';
 
@@ -13,7 +14,14 @@ class _AppPageState extends State<AppPage> {
   );
   int _currentIndex = 0;
   final _defaultColor = Colors.grey;
-  final _activeColor = Colors.blue;
+  final _activeColor = ThemeModel().theme;
+
+  void _handleItemTap(int index) {
+    _controller.jumpToPage(index);
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,45 +30,35 @@ class _AppPageState extends State<AppPage> {
       body: PageView(
         controller: _controller,
         children: <Widget>[
-          HomePage(),
+          HomePage(
+            onPressedAppBarAvatar: (s) {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
           TrendPage(),
           MyPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          _controller.jumpToPage(index);
-          setState(() {
-            _currentIndex = index;
-          });
-        },
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: _defaultColor),
-            activeIcon: Icon(Icons.home, color: _activeColor),
-            title: Text(
-              '首页',
-              style: TextStyle(color: _currentIndex == 0 ? _activeColor : _defaultColor)
-            )
+            icon: Icon(Icons.home),
+            title: Text('首页')
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up, color: _defaultColor),
-            activeIcon: Icon(Icons.trending_up, color: _activeColor),
-            title: Text(
-              '趋势',
-              style: TextStyle(color: _currentIndex == 1 ? _activeColor : _defaultColor)
-            )
+            icon: Icon(Icons.trending_up),
+            title: Text('趋势')
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle, color: _defaultColor),
-            activeIcon: Icon(Icons.account_circle, color: _activeColor),
-            title: Text(
-              '我的',
-              style: TextStyle(color: _currentIndex == 2 ? _activeColor : _defaultColor)
-            )
+            icon: Icon(Icons.account_circle),
+            title: Text('我的')
           ),
         ],
+        currentIndex: _currentIndex,
+        unselectedItemColor: _defaultColor,
+        selectedItemColor: _activeColor,
+        onTap: _handleItemTap,
       ),
     );
   }

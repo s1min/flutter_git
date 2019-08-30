@@ -4,7 +4,7 @@ import 'package:flutter_git/i18n/app_localizations.dart';
 import 'package:provider/provider.dart' as provider;
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({
+  AppDrawer({
     Key key
   }): super(key: key);
 
@@ -19,9 +19,7 @@ class AppDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _buildHeader(),  // 构建抽屉菜单头部
-            Expanded(
-              child: _buildMenus()
-            ),  // 构建功能菜单
+            Expanded(child: _buildMenus()),  // 构建功能菜单
           ],
         ),
       ),
