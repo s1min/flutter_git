@@ -70,18 +70,18 @@ class AppDrawer extends StatelessWidget {
   Widget _buildMenus() {
     return provider.Consumer<UserModel>(
       builder: (BuildContext context, UserModel user, Widget child) {
-        var locale = AppLocalizations.of(context).currentLocale;
+        var _locale = AppLocalizations.of(context).currentLocale;
 
         return ListView(
           children: <Widget>[
             ListTile(
               leading: const Icon(Icons.color_lens),
-              title: Text(locale.theme),
+              title: Text(_locale.theme),
               onTap: () => Navigator.of(context).pushNamed('theme'),
             ),
             ListTile(
               leading: const Icon(Icons.language),
-              title: Text(locale.language),
+              title: Text(_locale.language),
               onTap: () => Navigator.of(context).pushNamed('language'),
             ),
           ],
