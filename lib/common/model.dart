@@ -46,8 +46,10 @@ class LocaleModel extends ProfileChangeNotifier {
   // 获取当前用户的 APP 语言配置 Locale 类，如果为 null，则语言跟随系统语言
   Locale getLocale() {
     if (_profile.locale == null) return null;
+    // locale 的格式：`zh_CN`
     var t = _profile.locale.split('_');
-    return Locale(t[0], t[1]);
+    print(t);
+    return Locale('zh', 'CN');
   }
 
   // 获取当前 Locale 的字符串表示

@@ -57,7 +57,7 @@ class AppDrawer extends StatelessWidget {
           ),
           onTap: () {
             if (!user.isLogin) {
-              Navigator.of(context).pushNamed('login');
+              Navigator.of(context).pushNamed('/login');
             }
           },
         );
@@ -75,12 +75,12 @@ class AppDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.color_lens),
               title: Text(_locale.theme),
-              onTap: () => Navigator.of(context).pushNamed('theme'),
+              onTap: () => Navigator.of(context).pushNamed('/theme'),
             ),
             ListTile(
               leading: const Icon(Icons.language),
               title: Text(_locale.language),
-              onTap: () => Navigator.of(context).pushNamed('language'),
+              onTap: () => Navigator.of(context).pushNamed('/language'),
             ),
           ],
         );

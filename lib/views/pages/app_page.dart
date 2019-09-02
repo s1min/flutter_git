@@ -26,42 +26,14 @@ class _AppPageState extends State<AppPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("App Name"),
-        leading: Builder(builder: (context) {
-          return IconButton(
-            icon: Icon(Icons.dashboard, color: Colors.white), //自定义图标
-            onPressed: () {
-              // 打开抽屉菜单  
-              Scaffold.of(context).openDrawer(); 
-            },
-          );
-        }),
-        actions: <Widget>[ //导航栏右侧菜单
-          Builder(builder: (context) {
-            return IconButton(icon: Icon(Icons.share), onPressed: () {Scaffold.of(context).openDrawer(); });
-          })
-        ],
-      ),
-      floatingActionButton: Builder(builder: (context) {
-        return FloatingActionButton( //悬浮按钮
-          child: Icon(Icons.add),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-        );
-      }),
       drawer: AppDrawer(),
       body: PageView(
         controller: _controller,
         children: <Widget>[
-          Builder(builder: (context) {
-            return HomePage(
-              onPressedAppBarAvatar: (context) {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          }),
+          HomePage(
+            onPressedAppBarAvatar: (context) {
+            },
+          ),
           TrendPage(),
           MyPage(),
         ],

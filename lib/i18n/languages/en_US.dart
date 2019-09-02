@@ -144,4 +144,7 @@ class ENUS extends LanguageBase {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get auto => 'Auto';
 }

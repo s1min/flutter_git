@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'app_localizations.dart';
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+  AppLocalizationsDelegate();
+
   @override
   bool isSupported(Locale locale) => ['en', 'zh'].contains(locale.languageCode);
 

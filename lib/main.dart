@@ -20,15 +20,12 @@ class MyApp extends StatelessWidget {
         provider.ChangeNotifierProvider.value(value: LocaleModel()),
       ],
       child: Consumer2<ThemeModel, LocaleModel>(
-        builder: (BuildContext context, ThemeModel themeModel, LocaleModel localeModel, Widget child) {
+        builder: (BuildContext context, themeModel, localeModel, Widget child) {
           return MaterialApp(
             home: AppPage(),
             theme: ThemeData(
               primaryColor: themeModel.theme,
             ),
-            onGenerateTitle: (context) {
-              return AppLocalizations.of(context).currentLocale.home;
-            },
             locale: localeModel.getLocale(),
             supportedLocales: [
               const Locale('en', 'US'),  // 美国英语
@@ -57,9 +54,10 @@ class MyApp extends StatelessWidget {
             },
             // 注册命名路由表
             routes: <String, WidgetBuilder>{
-              'login': (context) => LoginPage(),
-              'theme': (context) => ThemePage(),
-              'language': (context) => LanguagePage(),
+              '/login': (context) => LoginPage(),
+              '/theme': (context) => ThemePage(),
+              '/language': (context) => LanguagePage(),
+              '/search': (context) => SearchIndexPage()
             },
           );
         }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_git/i18n/app_localizations.dart';
-import 'package:flutter_git/views/widgets/app_bar_search.dart';
 
-import '../../common/model.dart';
+import 'package:flutter_git/common/model.dart';
+import 'package:flutter_git/views/widgets/app_drawer.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({
@@ -20,12 +20,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       body: MediaQuery.removePadding(
         removeTop: true,
         context: context,
         child: NotificationListener(
           onNotification: (scrollNotification) {
-            print(scrollNotification);
           },
           child: ListView(
             children: <Widget>[
@@ -50,43 +50,44 @@ class _HomePageState extends State<HomePage> {
                       children: <Widget>[
                         Expanded(
                           flex: 1,
-                          child: Builder(builder: (context) {
-                            return IconButton(
+                          child: Builder(
+                            builder: (context) => IconButton(
                               icon: Image.asset(
                                 'assets/images/avatar_default.png', 
                                 width: 32, 
                                 height: 32,
                               ),
-                              onPressed: () {
-                                Scaffold.of(context).openDrawer();
-                                widget.onPressedAppBarAvatar(context);
-                              },
-                            );
-                          })
+                              onPressed: () => Scaffold.of(context).openDrawer(),
+                            ),
+                          ),
                         ),
                         Expanded( 
                           flex: 4,
-                          child: Container(
-                            height: 28,
-                            padding: EdgeInsets.only(left: 8, right: 8),
-                            alignment: Alignment.centerLeft,
-                            decoration: BoxDecoration(
-                              border: Border.all(width: 0),
-                              borderRadius: BorderRadius.all(Radius.circular(3)),
-                              color: Colors.white,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  '搜索',
-                                  style: TextStyle(color: Color(0xff6a737d)),
-                                ),
-                                Icon(
-                                  Icons.search,
-                                  color: Color(0xff6a737d),
-                                ),
-                              ],
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('/search');
+                            },
+                            child: Container(
+                              height: 28,
+                              padding: EdgeInsets.only(left: 8, right: 8),
+                              alignment: Alignment.centerLeft,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(3)),
+                                color: Colors.white,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.search,
+                                    color: Color(0xff6a737d),
+                                  ),
+                                  Text(
+                                    '搜索',
+                                    style: TextStyle(color: Color(0xff6a737d)),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

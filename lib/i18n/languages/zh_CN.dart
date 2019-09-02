@@ -144,4 +144,7 @@ class ZHCN extends LanguageBase {
 
   @override
   String get profile => '用户资料';
+
+  @override
+  String get auto => '跟随系统';
 }

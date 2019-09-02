@@ -7,18 +7,20 @@ import 'languages/zh_CN.dart';
 class AppLocalizations {
   final Locale locale;
 
-  final Map<String, LanguageBase> _localizations = {
-    'en': ENUS(),
-    'zh': ZHCN()
-  };
-
   AppLocalizations(this.locale);
 
-  static AppLocalizations of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
-  }
+  final Map<String, LanguageBase> _localizations = {
+    'en': ENUS(),
+    'zh': ZHCN(),
+  };
+
+  static AppLocalizations of(BuildContext context) => Localizations.of(context, AppLocalizations);
 
   LanguageBase get currentLocale {
-    return _localizations[locale.languageCode];
+    var lc = _localizations.containsKey(locale.languageCode) ?? 'zh';
+    print(locale.languageCode);
+    print(_localizations['zh']);
+    print(_localizations['zh'].home);
+    return _localizations[lc];
   }
 }

@@ -48,4 +48,5 @@ abstract class LanguageBase {
   String sign_up;
   String sign_text;
   String profile;
+  String auto;
 }
