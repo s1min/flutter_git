@@ -2,7 +2,13 @@ import '../language_base.dart';
 
 class ZHCN extends LanguageBase {
   @override
+  String get home => '主页';
+
+  @override
   String get trend => '趋势';
+
+  @override
+  String get my => '我的';
 
   @override
   String get bookmark => '书签';
@@ -20,9 +26,6 @@ class ZHCN extends LanguageBase {
   String get logout => '注销';
 
   @override
-  String get home => '主页';
-
-  @override
   String get repository => '项目';
 
   @override
@@ -35,7 +38,7 @@ class ZHCN extends LanguageBase {
   String get theme => '主题';
 
   @override
-  String get language => '多语言';
+  String get language => '语言';
 
   @override
   String get dialog_exit_title => '提示';

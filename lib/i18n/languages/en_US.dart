@@ -2,7 +2,13 @@ import '../language_base.dart';
 
 class ENUS extends LanguageBase {
   @override
+  String get home => 'Home';
+
+  @override
   String get trend => 'Trend';
+
+  @override
+  String get my => 'My';
 
   @override
   String get bookmark => 'Bookmark';
@@ -18,9 +24,6 @@ class ENUS extends LanguageBase {
 
   @override
   String get logout => 'Logout';
-
-  @override
-  String get home => 'Home';
 
   @override
   String get repository => 'Repos';

@@ -16,11 +16,11 @@ class AppLocalizations {
 
   static AppLocalizations of(BuildContext context) => Localizations.of(context, AppLocalizations);
 
-  LanguageBase get currentLocale {
-    var lc = _localizations.containsKey(locale.languageCode) ?? 'zh';
-    print(locale.languageCode);
-    print(_localizations['zh']);
-    print(_localizations['zh'].home);
-    return _localizations[lc];
-  }
+  LanguageBase get currentLocale => _localizations[locale.languageCode];
+
+  get trend => currentLocale.trend;
+
+  get theme => currentLocale.theme;
+
+  get language => currentLocale.language;
 }

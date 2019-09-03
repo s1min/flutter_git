@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_git/common/model.dart';
+import 'package:flutter_git/i18n/app_localizations.dart';
 import 'package:flutter_git/views/pages/index.dart';
 import 'package:flutter_git/views/widgets/app_drawer.dart';
 
@@ -25,6 +26,8 @@ class _AppPageState extends State<AppPage> {
 
   @override
   Widget build(BuildContext context) {
+    var _currentLocale = AppLocalizations.of(context).currentLocale;
+
     return Scaffold(
       drawer: AppDrawer(),
       body: PageView(
@@ -43,15 +46,15 @@ class _AppPageState extends State<AppPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('首页')
+            title: Text(_currentLocale.home),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.trending_up),
-            title: Text('趋势')
+            title: Text(_currentLocale.trend),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            title: Text('我的')
+            title: Text('我的'),
           ),
         ],
         currentIndex: _currentIndex,

@@ -48,8 +48,7 @@ class LocaleModel extends ProfileChangeNotifier {
     if (_profile.locale == null) return null;
     // locale 的格式：`zh_CN`
     var t = _profile.locale.split('_');
-    print(t);
-    return Locale('zh', 'CN');
+    return Locale(t[0], t[1]);
   }
 
   // 获取当前 Locale 的字符串表示

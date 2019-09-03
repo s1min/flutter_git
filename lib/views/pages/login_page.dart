@@ -65,10 +65,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    var locale = AppLocalizations.of(context).currentLocale;
+    var _currentLocale = AppLocalizations.of(context).currentLocale;
 
     return Scaffold(
-      appBar: AppBar(title: Text(locale.login)),
+      appBar: AppBar(title: Text(_currentLocale.login)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -80,14 +80,14 @@ class _LoginPageState extends State<LoginPage> {
                 controller: usernameController,
                 autofocus: nameAutoFocus,
                 decoration: InputDecoration(
-                  labelText: locale.username_email,
+                  labelText: _currentLocale.username_email,
                 )
               ),
               TextFormField(
                 controller: passwordController,
                 autofocus: !nameAutoFocus,
                 decoration: InputDecoration(
-                  labelText: locale.password,
+                  labelText: _currentLocale.password,
                   suffixIcon: IconButton(
                     icon: Icon(showPassword ? Icons.visibility_off : Icons.visibility),
                     onPressed: onToggleShowPassword,
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: Theme.of(context).primaryColor,
                     onPressed: onLogin,
                     textColor: Colors.white,
-                    child: Text(locale.login),
+                    child: Text(_currentLocale.login),
                   ),
                 ),
               )
