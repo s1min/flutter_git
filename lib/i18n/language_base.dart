@@ -1,11 +1,13 @@
 abstract class LanguageBase {
+  String home;
   String trend;
+  String my;
+  String search_placeholder;
   String bookmark;
   String setting;
   String about;
   String share;
   String logout;
-  String home;
   String repository;
   String event;
   String issue;
@@ -30,6 +32,8 @@ abstract class LanguageBase {
   String username_email;
   String email;
   String password;
+  String username_required;
+  String password_required;
   String update;
   String today;
   String week;

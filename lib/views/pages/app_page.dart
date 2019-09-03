@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_git/common/model.dart';
 import 'package:flutter_git/i18n/app_localizations.dart';
 import 'package:flutter_git/views/pages/index.dart';
 import 'package:flutter_git/views/widgets/app_drawer.dart';
@@ -14,8 +13,6 @@ class _AppPageState extends State<AppPage> {
     initialPage: 0,
   );
   int _currentIndex = 0;
-  final _defaultColor = Colors.grey;
-  final _activeColor = ThemeModel().theme;
 
   void _handleItemTap(int index) {
     _controller.jumpToPage(index);
@@ -26,6 +23,8 @@ class _AppPageState extends State<AppPage> {
 
   @override
   Widget build(BuildContext context) {
+    final _defaultColor = Colors.grey;
+    final _activeColor = Theme.of(context).primaryColor;
     var _currentLocale = AppLocalizations.of(context).currentLocale;
 
     return Scaffold(
@@ -54,7 +53,7 @@ class _AppPageState extends State<AppPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            title: Text('我的'),
+            title: Text(_currentLocale.my),
           ),
         ],
         currentIndex: _currentIndex,

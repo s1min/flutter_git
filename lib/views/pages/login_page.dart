@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:flutter_git/common/index.dart';
 import 'package:flutter_git/http/api.dart';
 import 'package:flutter_git/models/index.dart';
 import 'package:flutter_git/i18n/app_localizations.dart';
 import 'package:flutter_git/common/global.dart';
-import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,42 +14,40 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController usernameController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+  TextEditingController _usernameController = new TextEditingController();
+  TextEditingController _passwordController = new TextEditingController();
 
-  bool showPassword = false;
-  GlobalKey formKey = new GlobalKey<FormState>();
-  bool nameAutoFocus = true;
+  bool _showPassword = false;
+  GlobalKey _formKey = new GlobalKey<FormState>();
+  bool _nameAutoFocus = true;
 
   @override
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
-    usernameController.text = Global.profile.lastLogin;
-    if (usernameController.text != null) {
-      nameAutoFocus = false;
+    _usernameController.text = Global.profile.lastLogin;
+    if (_usernameController.text != null) {
+      _nameAutoFocus = false;
     }
     super.initState();
   }
 
-  void onToggleShowPassword() {
-    setState(() {
-      this.showPassword = !this.showPassword;
-    });
+  void _showToast(String str) {
+    Fluttertoast.showToast(msg: str);
   }
 
-  void onLogin() async {
-    if ((formKey.currentState as FormState).validate()) {
+  void _handleLogin() async {
+    if ((_formKey.currentState as FormState).validate()) {
       User user;
 
       try {
-        user = await Api(context).login(usernameController.text, passwordController.text);
+        user = await Api(context).login(_usernameController.text, _passwordController.text);
         // 因为登录页返回后，首页会 build，所以传 false，更新 user 后不触发更新
         Provider.of<UserModel>(context, listen: false).user = user;
       } catch (e) {
         if (e.response?.statusCode == 401) {
-          showToast(AppLocalizations.of(context).currentLocale.login_fail);
+          _showToast(AppLocalizations.of(context).currentLocale.login_fail);
         } else {
-          showToast(e.toString());
+          _showToast(e.toString());
         }
       } finally {
         Navigator.of(context).pop();
@@ -59,10 +59,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void showToast(String str) {
-    print(str);
-  }
-
   @override
   Widget build(BuildContext context) {
     var _currentLocale = AppLocalizations.of(context).currentLocale;
@@ -72,28 +68,40 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: formKey,
+          key: _formKey,
           autovalidate: true,
           child: Column(
             children: <Widget>[
               TextFormField(
-                controller: usernameController,
-                autofocus: nameAutoFocus,
+                controller: _usernameController,
+                autofocus: _nameAutoFocus,
                 decoration: InputDecoration(
                   labelText: _currentLocale.username_email,
-                )
+                  prefixIcon: Icon(Icons.person),
+                ),
+                validator: (v) => v.trim().isNotEmpty
+                  ? null
+                  : AppLocalizations.of(context).currentLocale.username_required,
               ),
               TextFormField(
-                controller: passwordController,
-                autofocus: !nameAutoFocus,
+                controller: _passwordController,
+                autofocus: !_nameAutoFocus,
                 decoration: InputDecoration(
                   labelText: _currentLocale.password,
+                  prefixIcon: Icon(Icons.lock),
                   suffixIcon: IconButton(
-                    icon: Icon(showPassword ? Icons.visibility_off : Icons.visibility),
-                    onPressed: onToggleShowPassword,
-                  )
+                    icon: Icon(_showPassword ? Icons.visibility_off : Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        _showPassword = !_showPassword;
+                      });
+                    },
+                  ),
                 ),
-                obscureText: !showPassword,
+                obscureText: !_showPassword,
+                validator: (v) => v.trim().isNotEmpty
+                  ? null
+                  : AppLocalizations.of(context).currentLocale.password_required,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25),
@@ -101,12 +109,12 @@ class _LoginPageState extends State<LoginPage> {
                   constraints: BoxConstraints.expand(height: 55),
                   child: RaisedButton(
                     color: Theme.of(context).primaryColor,
-                    onPressed: onLogin,
+                    onPressed: _handleLogin,
                     textColor: Colors.white,
                     child: Text(_currentLocale.login),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

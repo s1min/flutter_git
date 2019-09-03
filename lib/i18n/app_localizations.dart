@@ -16,11 +16,6 @@ class AppLocalizations {
 
   static AppLocalizations of(BuildContext context) => Localizations.of(context, AppLocalizations);
 
+  // 定义一个方法获取当前的语言类
   LanguageBase get currentLocale => _localizations[locale.languageCode];
-
-  get trend => currentLocale.trend;
-
-  get theme => currentLocale.theme;
-
-  get language => currentLocale.language;
 }

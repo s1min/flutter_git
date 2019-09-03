@@ -11,6 +11,9 @@ class ZHCN extends LanguageBase {
   String get my => '我的';
 
   @override
+  String get search_placeholder => '搜索';
+
+  @override
   String get bookmark => '书签';
 
   @override
@@ -93,6 +96,12 @@ class ZHCN extends LanguageBase {
 
   @override
   String get password => '密码';
+
+  @override
+  String get username_required => '用户名不能为空';
+
+  @override
+  String get password_required => '密码不能为空';
 
   @override
   String get update => '更新';

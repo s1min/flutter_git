@@ -8,7 +8,6 @@ class TrendPage extends StatefulWidget {
 class _TrendPageState extends State<TrendPage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: Center(
         child: Text('这是TrendPage'),

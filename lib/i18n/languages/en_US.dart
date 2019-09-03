@@ -11,6 +11,9 @@ class ENUS extends LanguageBase {
   String get my => 'My';
 
   @override
+  String get search_placeholder => 'Search or jump to...';
+
+  @override
   String get bookmark => 'Bookmark';
 
   @override
@@ -93,6 +96,12 @@ class ENUS extends LanguageBase {
 
   @override
   String get password => 'Password';
+
+  @override
+  String get username_required => 'Username is required';
+
+  @override
+  String get password_required => 'Password is required';
 
   @override
   String get update => 'update';
