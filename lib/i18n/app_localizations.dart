@@ -14,7 +14,8 @@ class AppLocalizations {
     'zh': ZHCN(),
   };
 
-  static AppLocalizations of(BuildContext context) => Localizations.of(context, AppLocalizations);
+  static AppLocalizations of(BuildContext context) =>
+      Localizations.of(context, AppLocalizations);
 
   // 定义一个方法获取当前的语言类
   LanguageBase get currentLocale => _localizations[locale.languageCode];

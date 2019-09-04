@@ -18,7 +18,9 @@ class LanguagePage extends StatelessWidget {
           // 对 App 当前语言进行高亮显示
           style: TextStyle(color: _localeModel.locale == value ? _color : null),
         ),
-        trailing: _localeModel.locale == value ? Icon(Icons.done, color: _color) : null,
+        trailing: _localeModel.locale == value
+            ? Icon(Icons.done, color: _color)
+            : null,
         onTap: () {
           // 更新 locale 后 MaterialApp 会重新 build
           _localeModel.locale = value;

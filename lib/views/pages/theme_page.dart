@@ -12,7 +12,6 @@ class ThemePage extends StatefulWidget {
 class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).currentLocale.theme),

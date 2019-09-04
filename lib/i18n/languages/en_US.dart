@@ -83,7 +83,8 @@ class ENUS extends LanguageBase {
   String get dialog_logout_title => 'logout';
 
   @override
-  String get dialog_logout_content => 'make sure to log out of the current account？';
+  String get dialog_logout_content =>
+      'make sure to log out of the current account？';
 
   @override
   String get login => 'Sign in';

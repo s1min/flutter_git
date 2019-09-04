@@ -19,49 +19,49 @@ class MyApp extends StatelessWidget {
         provider.ChangeNotifierProvider.value(value: UserModel()),
         provider.ChangeNotifierProvider.value(value: LocaleModel()),
       ],
-      child: Consumer2<ThemeModel, LocaleModel>(
-        builder: (BuildContext context, themeModel, localeModel, Widget child) {
-          return MaterialApp(
-            home: AppPage(),
-            theme: ThemeData(
-              primaryColor: themeModel.theme,
-            ),
-            locale: localeModel.getLocale(),
-            supportedLocales: [
-              const Locale('en', 'US'),  // 美国英语
-              const Locale('zh', 'CN'), // 中文简体
-            ],
-            localizationsDelegates: [
-              // 本地化的代理类
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              AppLocalizationsDelegate.delegate,
-            ],
-            localeResolutionCallback: (Locale _locale, Iterable<Locale> supportedLocales) {
-              if (localeModel.getLocale() != null) {
-                // 如果已经选定语言，则不跟随系统
-                return localeModel.getLocale();
+      child: Consumer2<ThemeModel, LocaleModel>(builder:
+          (BuildContext context, themeModel, localeModel, Widget child) {
+        return MaterialApp(
+          home: AppPage(),
+          theme: ThemeData(
+            primaryColor: themeModel.theme,
+          ),
+          locale: localeModel.getLocale(),
+          supportedLocales: [
+            const Locale('en', 'US'), // 美国英语
+            const Locale('zh', 'CN'), // 中文简体
+          ],
+          localizationsDelegates: [
+            // 本地化的代理类
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            AppLocalizationsDelegate.delegate,
+          ],
+          localeResolutionCallback:
+              (Locale _locale, Iterable<Locale> supportedLocales) {
+            if (localeModel.getLocale() != null) {
+              // 如果已经选定语言，则不跟随系统
+              return localeModel.getLocale();
+            } else {
+              Locale locale;
+              // APP 语言跟随系统语言，如果系统语言不是中文简体或美国英语则默认使用美国英语
+              if (supportedLocales.contains(_locale)) {
+                locale = _locale;
               } else {
-                Locale locale;
-                // APP 语言跟随系统语言，如果系统语言不是中文简体或美国英语则默认使用美国英语
-                if (supportedLocales.contains(_locale)) {
-                  locale = _locale;
-                } else {
-                  locale = Locale('en', 'US');
-                }
-                return locale;
+                locale = Locale('en', 'US');
               }
-            },
-            // 注册命名路由表
-            routes: <String, WidgetBuilder>{
-              '/login': (context) => LoginPage(),
-              '/theme': (context) => ThemePage(),
-              '/language': (context) => LanguagePage(),
-              '/search': (context) => SearchIndexPage()
-            },
-          );
-        }
-      ),
+              return locale;
+            }
+          },
+          // 注册命名路由表
+          routes: <String, WidgetBuilder>{
+            '/login': (context) => LoginPage(),
+            '/theme': (context) => ThemePage(),
+            '/language': (context) => LanguagePage(),
+            '/search': (context) => SearchIndexPage()
+          },
+        );
+      }),
     );
   }
 }

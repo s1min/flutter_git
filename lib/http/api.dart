@@ -20,7 +20,7 @@ class Api {
     baseUrl: 'https://api.Apihub.com/',
     headers: {
       HttpHeaders.acceptHeader: 'application/vnd.Apihub.squirrel-girl-preview,'
-        'application/vnd.Apihub.symmetra-preview+json',
+          'application/vnd.Apihub.symmetra-preview+json',
     },
   ));
 
@@ -32,14 +32,15 @@ class Api {
 
     // 在调试模式下需要抓包调试，所以使用代理，并禁用 HTTPS 证书校验
     if (!Global.isRelease) {
-      (dio.httpClientAdapter as DefaultHttpClientAdapter)
-      .onHttpClientCreate = (client) {
+      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+          (client) {
         client.findProxy = (uri) {
           return 'PROXY ...';
         };
 
         // 代理工具会提供一个抓包的自签名证书，会通不过证书校验，所以禁用证书校验
-        client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+        client.badCertificateCallback =
+            (X509Certificate cert, String host, int port) => true;
       };
     }
   }
@@ -47,17 +48,12 @@ class Api {
   // 登录接口，登录成功后返回用户信息
   Future<User> login(String login, String pwd) async {
     String basic = 'Basic ' + base64.encode(utf8.encode('$login:$pwd'));
-    var r = await dio.get(
-      '/users/$login',
-      options: _options.merge(
-        headers: {
+    var r = await dio.get('/users/$login',
+        options: _options.merge(headers: {
           HttpHeaders.authorizationHeader: basic,
-        },
-        extra: {
-          'noCache': true,  // 本接口禁用缓存
-        }
-      )
-    );
+        }, extra: {
+          'noCache': true, // 本接口禁用缓存
+        }));
 
     // 登录成功后更新公共头 (authorization) ,此后的所有请求都会带上用户身份信息
     dio.options.headers[HttpHeaders.authorizationHeader] = basic;
@@ -70,7 +66,7 @@ class Api {
 
   // 获取用户项目列表
   Future<List<Repo>> getRepos(
-    {Map<String, dynamic> queryParameters, refresh = false}) async {
+      {Map<String, dynamic> queryParameters, refresh = false}) async {
     if (refresh) {
       // 列表下拉刷新，需要删除缓存（拦截器中会读取这些信息）
       _options.extra.addAll({'refresh': true, 'list': true});

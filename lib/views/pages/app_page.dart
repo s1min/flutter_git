@@ -33,8 +33,7 @@ class _AppPageState extends State<AppPage> {
         controller: _controller,
         children: <Widget>[
           HomePage(
-            onPressedAppBarAvatar: (context) {
-            },
+            onPressedAppBarAvatar: (context) {},
           ),
           TrendPage(),
           MyPage(),

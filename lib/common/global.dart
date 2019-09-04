@@ -51,6 +51,6 @@ class Global {
   }
 
   // 持久化 Profile 信息
-  static saveProfile() => _prefs.setString('profile', jsonEncode(profile.toJson()));
-
+  static saveProfile() =>
+      _prefs.setString('profile', jsonEncode(profile.toJson()));
 }

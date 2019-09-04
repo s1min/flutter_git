@@ -4,7 +4,7 @@ import 'package:flutter_git/common/global.dart';
 
 class CacheObject {
   CacheObject(this.response)
-    : timeStamp = DateTime.now().millisecondsSinceEpoch;
+      : timeStamp = DateTime.now().millisecondsSinceEpoch;
   Response response;
   int timeStamp;
 
@@ -35,15 +35,15 @@ class NetCache extends Interceptor {
       return options;
     }
 
-    if (options.extra['noCache'] != true
-      && options.method.toLowerCase() == 'get') {
+    if (options.extra['noCache'] != true &&
+        options.method.toLowerCase() == 'get') {
       String key = options.extra['cacheKey'] ?? options.uri.toString();
       var ob = cache[key];
 
       if (ob != null) {
         // 若缓存未过期，则返回缓存内容
-        if ((DateTime.now().millisecondsSinceEpoch - ob.timeStamp) / 1000
-          < Global.profile.cache.maxAge) {
+        if ((DateTime.now().millisecondsSinceEpoch - ob.timeStamp) / 1000 <
+            Global.profile.cache.maxAge) {
           return cache[key].response;
         } else {
           // 若已过期则删除缓存，继续向服务器请求
@@ -69,8 +69,8 @@ class NetCache extends Interceptor {
   _saveCache(Response object) {
     RequestOptions options = object.request;
 
-    if (options.extra['noCache'] != true
-      && options.method.toLowerCase() == 'get') {
+    if (options.extra['noCache'] != true &&
+        options.method.toLowerCase() == 'get') {
       // 如果缓存数量超过最大数量限制，则先移出最早的一条记录
       if (cache.length == Global.profile.cache.maxCount) {
         cache.remove(cache[cache.keys.first]);

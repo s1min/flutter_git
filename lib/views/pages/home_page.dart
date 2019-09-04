@@ -5,10 +5,7 @@ import 'package:flutter_git/common/model.dart';
 import 'package:flutter_git/views/widgets/app_drawer.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({
-    Key key,
-    @required this.onPressedAppBarAvatar
-  }): super(key: key);
+  HomePage({Key key, @required this.onPressedAppBarAvatar}) : super(key: key);
 
   final ValueChanged onPressedAppBarAvatar;
 
@@ -25,8 +22,7 @@ class _HomePageState extends State<HomePage> {
         removeTop: true,
         context: context,
         child: NotificationListener(
-          onNotification: (scrollNotification) {
-          },
+          onNotification: (scrollNotification) {},
           child: ListView(
             children: <Widget>[
               _buildHeader(),
@@ -47,10 +43,7 @@ class _HomePageState extends State<HomePage> {
         color: Theme.of(context).primaryColor,
         boxShadow: [
           BoxShadow(
-              color: Colors.black54,
-              offset: Offset(2.0,2.0),
-              blurRadius: 4.0
-          ),
+              color: Colors.black54, offset: Offset(2.0, 2.0), blurRadius: 4.0),
         ],
       ),
       child: Column(
@@ -93,7 +86,9 @@ class _HomePageState extends State<HomePage> {
                           color: Color(0xff6a737d),
                         ),
                         Text(
-                          AppLocalizations.of(context).currentLocale.search_placeholder,
+                          AppLocalizations.of(context)
+                              .currentLocale
+                              .search_placeholder,
                           style: TextStyle(color: Color(0xff6a737d)),
                         ),
                       ],

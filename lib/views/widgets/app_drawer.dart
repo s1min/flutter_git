@@ -4,9 +4,7 @@ import 'package:flutter_git/i18n/app_localizations.dart';
 import 'package:provider/provider.dart' as provider;
 
 class AppDrawer extends StatelessWidget {
-  AppDrawer({
-    Key key
-  }): super(key: key);
+  AppDrawer({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +16,14 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _buildHeader(),  // 构建抽屉菜单头部
-            Expanded(child: _buildMenus()),  // 构建功能菜单
+            _buildHeader(), // 构建抽屉菜单头部
+            Expanded(child: _buildMenus()), // 构建功能菜单
           ],
         ),
       ),
     );
   }
-  
+
   Widget _buildHeader() {
     return provider.Consumer<UserModel>(
       builder: (BuildContext context, UserModel user, Widget child) {
@@ -39,14 +37,16 @@ class AppDrawer extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: ClipOval(
                     child: user.isLogin
-                      ? Image.asset('assets/images/avatar_default.png', width: 80)
-                      : Image.asset('assets/images/avatar_default.png', width: 80),
+                        ? Image.asset('assets/images/avatar_default.png',
+                            width: 80)
+                        : Image.asset('assets/images/avatar_default.png',
+                            width: 80),
                   ),
                 ),
                 Text(
                   user.isLogin
-                    ? user.user.login
-                    : AppLocalizations.of(context).currentLocale.login,
+                      ? user.user.login
+                      : AppLocalizations.of(context).currentLocale.login,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

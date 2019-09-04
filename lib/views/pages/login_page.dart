@@ -40,7 +40,8 @@ class _LoginPageState extends State<LoginPage> {
       User user;
 
       try {
-        user = await Api(context).login(_usernameController.text, _passwordController.text);
+        user = await Api(context)
+            .login(_usernameController.text, _passwordController.text);
         // 因为登录页返回后，首页会 build，所以传 false，更新 user 后不触发更新
         Provider.of<UserModel>(context, listen: false).user = user;
       } catch (e) {
@@ -80,8 +81,10 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.person),
                 ),
                 validator: (v) => v.trim().isNotEmpty
-                  ? null
-                  : AppLocalizations.of(context).currentLocale.username_required,
+                    ? null
+                    : AppLocalizations.of(context)
+                        .currentLocale
+                        .username_required,
               ),
               TextFormField(
                 controller: _passwordController,
@@ -90,7 +93,9 @@ class _LoginPageState extends State<LoginPage> {
                   labelText: _currentLocale.password,
                   prefixIcon: Icon(Icons.lock),
                   suffixIcon: IconButton(
-                    icon: Icon(_showPassword ? Icons.visibility_off : Icons.visibility),
+                    icon: Icon(_showPassword
+                        ? Icons.visibility_off
+                        : Icons.visibility),
                     onPressed: () {
                       setState(() {
                         _showPassword = !_showPassword;
@@ -100,8 +105,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 obscureText: !_showPassword,
                 validator: (v) => v.trim().isNotEmpty
-                  ? null
-                  : AppLocalizations.of(context).currentLocale.password_required,
+                    ? null
+                    : AppLocalizations.of(context)
+                        .currentLocale
+                        .password_required,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25),
