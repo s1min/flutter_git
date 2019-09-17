@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_git/views/widgets/list_state.dart';
+import 'package:flutter_git/views/widgets/pull/pull_load.dart';
 
 class TrendPage extends StatefulWidget {
   @override
@@ -6,12 +8,10 @@ class TrendPage extends StatefulWidget {
 }
 
 class _TrendPageState extends State<TrendPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('这是TrendPage'),
-      ),
     );
   }
 }

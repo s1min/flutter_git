@@ -3,7 +3,6 @@ import 'package:flutter_git/views/pages/app_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_git/common/index.dart';
-import 'package:flutter_git/i18n/app_localizations.dart';
 import 'package:flutter_git/i18n/app_localizations_delegate.dart';
 import 'package:flutter_git/views/pages/index.dart';
 import 'package:provider/provider.dart' as provider;

@@ -17,7 +17,7 @@ class Api {
   Options _options;
 
   static Dio dio = new Dio(BaseOptions(
-    baseUrl: 'https://api.Apihub.com/',
+    baseUrl: 'https://api.github.com/',
     headers: {
       HttpHeaders.acceptHeader: 'application/vnd.Apihub.squirrel-girl-preview,'
           'application/vnd.Apihub.symmetra-preview+json',
